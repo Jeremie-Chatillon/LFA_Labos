@@ -1,6 +1,6 @@
 ```bash
-conda create --name mlg_pw python=3.6
-conda activate mlg_pw
+conda create --name bbc_pw_labo02 python=3.6
+conda activate bbc_pw_labo02
 pip install -r requirements.txt
 
 jupyter notebook
