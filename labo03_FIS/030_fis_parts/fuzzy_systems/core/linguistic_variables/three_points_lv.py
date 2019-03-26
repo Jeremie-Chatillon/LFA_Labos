@@ -1,5 +1,6 @@
 from fuzzy_systems.core.linguistic_variables.linguistic_variable import LinguisticVariable
 from fuzzy_systems.core.membership_functions.lin_piece_wise_mf import LinPWMF
+from fuzzy_systems.core.membership_functions.trap_mf import TrapMF
 
 
 class ThreePointsLV(LinguisticVariable):
@@ -25,5 +26,12 @@ class ThreePointsLV(LinguisticVariable):
     """
 
     def __init__(self, name, p1, p2, p3):
-        assert False, "TODO student"
-        })
+        # Check de la validité des points: p1 <= p2 <= p3
+        assert (p1<= p2) & (p2 <= p3), "False values: p1 <= p2 <= p3"
+        super().__init__(
+          name=name, 
+          ling_values_dict={      # dictionnaire de valeurs avec les courbes en fonction de p1, p2, p3 pour x et 1 ou 0 pour y
+            "poor": LinPWMF([p1, 1], [p2, 0]),
+            "average": TrapMF(p1, p2, p3),
+            "good": LinPWMF([p2, 0], [p3, 1])
+        }) 
