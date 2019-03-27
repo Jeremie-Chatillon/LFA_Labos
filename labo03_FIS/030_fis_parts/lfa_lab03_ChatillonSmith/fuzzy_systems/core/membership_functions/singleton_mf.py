@@ -4,7 +4,7 @@ class SingletonMF(FreeShapeMF):
   def __init__(self, x):
       #Diogo: you need to comment the code
     self._x = x
-    super(SingletonMF, self).__init__([x, x], [0,1])
+    super(SingletonMF, self).__init__([x], [1])
   def fuzzify(self, in_value):
     if(in_value == self._x):
         return 1.0

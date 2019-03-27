@@ -57,10 +57,34 @@ class FuzzyRule:
         :return: a list of fuzzified inputs (same size as the number of
         antecedents) for this particular rule
         """
-
         fuzzified_inputs_for_rule = []
+        
+        # Parcours de tous les Antecedent pour pouvoir extraire la valeur fuzzifié de leurs linguistic_values
+        for ant in self._ants:
+            
+            # récupération de la valeur du paramètre .fuzzify
+            lv_name_name = ant.lv_name.name
+            valFuzzy = crisp_inputs[lv_name_name]
+            
+            # Récupération de la valeur d'Antecedent e.g "cold"
+            ant_value = ant.lv_value
+            # Récupération des lingistiques values en fonction de l'Antecedent
+            lv_value = ant.lv_name.ling_values[ant_value]
+            
+            
+            
+            final = 0 # contiendra la valeurs fuzzifié avant de l'insérer dans le tableau
+            
+            # Récuparation du is_not pour savoir si on doit inverser la fuzzification (if true: 1- fuzzy else: fuzzy)
+            is_not = ant.is_not
+            if is_not:
+                final = 1- lv_value.fuzzify(valFuzzy)
+            else:
+                final = lv_value.fuzzify(valFuzzy)
+            
+            # Ajout de la valeur fuzzifiée dans le tableau
+            fuzzified_inputs_for_rule.append(final)
 
-        assert False, "TODO student"
         return fuzzified_inputs_for_rule
 
     def activate(self, fuzzified_inputs):

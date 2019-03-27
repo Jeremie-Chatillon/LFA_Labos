@@ -31,7 +31,7 @@ class ThreePointsLV(LinguisticVariable):
         super().__init__(
           name=name, 
           ling_values_dict={      # dictionnaire de valeurs avec les courbes en fonction de p1, p2, p3 pour x et 1 ou 0 pour y
-            "poor": LinPWMF([p1, 1], [p2, 0]),
-            "average": TrapMF(p1, p2, p3),
-            "good": LinPWMF([p2, 0], [p3, 1])
+            "low": LinPWMF([p1, 1], [p2, 0]),
+            "medium": TrapMF(p1, p2, p3),
+            "high": LinPWMF([p2, 0], [p3, 1])
         }) 
